@@ -73,7 +73,7 @@ sns.heatmap(numericExerciseDF.corr(), annot=True)
 plt.show()
 
 # On the correlation map, we can see that the the exercise dataset holds a lot of correlation between the different exercises, which is expected, since the exercises are similar in nature, and should be correlated
-# The correlation between the body weights and amount of calories burned are 1=1
+# The correlation between the body weights and amount of calories burned are 1=1. Can this be true?
 
 # We need to find the exercises the users can actually do at the gym
 exercise_types = ['Stationary cycling', 'Calisthenics', 'Circuit training', 'Weight lifting', 'Stair machine', 'Rowing machine', 'Ski machine', 'Aerobics', 'Stretching', 'Mild stretching', 'Instructing aerobic class', 'Running', 'Martial arts']
