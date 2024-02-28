@@ -62,6 +62,7 @@ outliers = pd.concat(outliers)
 print(outliers)
 
 # We wont remove the outliers, since they are a real exercise, and they are adding value to the dataset, by being a productive exercise for our users
+# We might do it later.
 
 # Lets check for correlation
 numericExerciseDF.hist(figsize=(15, 10))
