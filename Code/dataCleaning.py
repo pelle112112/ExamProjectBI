@@ -86,3 +86,12 @@ plt.figure(figsize=(15, 10))
 sns.barplot(x='Calories per kg', y='Activity, Exercise or Sport (1 hour)', data=gymExercises)
 plt.show()
 
+# How can we use the megagym dataset to create a 1 week workout plan for the users?
+# We need to find out how trained the users are, and then we can use the megagym dataset to create a workout plan for them
+
+def returnExercisesByLevel(level):
+   exercises = megaGym_datasetDF[megaGym_datasetDF['Level'] == level]
+   return exercises
+
+beginnerExercises = returnExercisesByLevel('Beginner')
+print(beginnerExercises)
