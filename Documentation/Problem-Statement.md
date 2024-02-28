@@ -1,5 +1,5 @@
 Problem Statement:
-How can BI and AI be leveraged to develop a personalized fitness training program for individuals without prior fitness knowledge or access to personal trainers?
+How can BI and AI be leveraged to develop a personalized fitness training program for individuals without prior fitness knowledge or need for a personal trainers?
 Problem Questions: (TBD 1+2)
 1. How do individuals without fitness expertise determine suitable exercises when initiating a gym routine?
 
