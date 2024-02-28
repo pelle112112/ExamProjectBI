@@ -61,6 +61,16 @@ for column in StandardDF.columns:
 outliers = pd.concat(outliers)
 print(outliers)
 
-# Adding back the non numerical columns to the exercise dataset
-NumericDFOutliers = exercise_datasetDF.join(outliers)
-print(NumericDFOutliers)
+# We wont remove the outliers, since they are a real exercise, and they are adding value to the dataset, by being a productive exercise for our users
+
+# Lets check for correlation
+nonNumericExerciseDF.hist(figsize=(15, 10))
+plt.tight_layout()
+plt.show()
+plt.figure(figsize=(15, 10))
+sns.heatmap(nonNumericExerciseDF.corr(), annot=True)
+plt.show()
+
+# On the correlation map, we can see that the the exercise dataset holds a lot of correlation between the different exercises, which is expected, since the exercises are similar in nature, and should be correlated
+# The correlation between the body weights and amount of calories burned are 1=1
+
