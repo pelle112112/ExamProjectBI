@@ -95,3 +95,59 @@ def returnExercisesByLevel(level):
 
 beginnerExercises = returnExercisesByLevel('Beginner')
 print(beginnerExercises)
+
+
+# What we want to do now is create a model that can predict the amount of time the user needs to spend at the gym, to reach their goal
+# We will use the exercise dataset to create this model
+# We will use the amount of calories burned, the body weight and the type of exercise to predict the amount of time the user needs to spend at the gym
+# We will use a linear regression model to predict the amount of time the user needs to spend at the gym
+# The bodyweight will come as input from the user, and the type of exercise will be chosen by the user
+# The amount of calories burned will be calculated by the model, and the amount of time the user needs to spend at the gym will be predicted by the model
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
+
+def train_calories_burned_model(dataset):
+    # Assuming 'Activity' is the activity name, and the rest are weights and calories burned
+    X = dataset[['130 lb', '155 lb', '180 lb', '205 lb']]
+    y = dataset['Calories per kg']
+
+    # Split the dataset into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Create a linear regression model
+    model = LinearRegression()
+
+    # Train the model
+    model.fit(X_train, y_train)
+
+    # Make predictions on the test set
+    y_pred = model.predict(X_test)
+
+    # Evaluate the model
+    mse = mean_squared_error(y_test, y_pred)
+    print(f'Mean Squared Error: {mse}')
+
+    # Visualize the predictions
+    plt.scatter(X_test['130 lb'], y_test, color='black', label='Actual')
+    plt.scatter(X_test['130 lb'], y_pred, color='blue', label='Predicted')
+    plt.xlabel('Weight (130 lb)')
+    plt.ylabel('Calories per kg')
+    plt.legend()
+    plt.show()
+
+    return model
+
+# Train the model
+calories_burned_model = train_calories_burned_model(exercise_datasetDF)
+print(calories_burned_model)
+
+
