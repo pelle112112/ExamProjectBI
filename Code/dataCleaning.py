@@ -9,6 +9,7 @@ from sklearn.metrics import r2_score
 import sklearn.metrics as sm
 from sklearn.preprocessing import PolynomialFeatures
 import numpy as np
+from sklearn.metrics import mean_squared_error
 
 
 
@@ -103,17 +104,9 @@ print(beginnerExercises)
 # We will use a linear regression model to predict the amount of time the user needs to spend at the gym
 # The bodyweight will come as input from the user, and the type of exercise will be chosen by the user
 # The amount of calories burned will be calculated by the model, and the amount of time the user needs to spend at the gym will be predicted by the model
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
-import matplotlib.pyplot as plt
 
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
-import matplotlib.pyplot as plt
+
+
 
 def train_calories_burned_model(dataset):
     # Assuming 'Activity' is the activity name, and the rest are weights and calories burned
