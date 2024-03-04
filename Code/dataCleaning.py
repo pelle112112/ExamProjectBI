@@ -106,7 +106,7 @@ print(beginnerExercises)
 # The amount of calories burned will be calculated by the model, and the amount of time the user needs to spend at the gym will be predicted by the model
 
 
-
+'''
 
 def train_calories_burned_model(dataset):
     # Assuming 'Activity' is the activity name, and the rest are weights and calories burned
@@ -143,4 +143,4 @@ def train_calories_burned_model(dataset):
 calories_burned_model = train_calories_burned_model(exercise_datasetDF)
 print(calories_burned_model)
 
-
+'''
