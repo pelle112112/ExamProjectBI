@@ -144,3 +144,31 @@ calories_burned_model = train_calories_burned_model(exercise_datasetDF)
 print(calories_burned_model)
 
 '''
+
+# Find all the intensity exercises in the gymExercises dataset. We know they are either listed as: vigorous or fast
+# We then find the average amount of calories burned per kg for these exercises
+# We have to convert the values from kg to lbs. 1 kg = 2.2 lbs
+highIntensityExercises = gymExercises[gymExercises['Activity, Exercise or Sport (1 hour)'].str.contains('vigorous|fast')]
+print(highIntensityExercises)
+highAverage = 0
+for i in highIntensityExercises['Activity, Exercise or Sport (1 hour)']:
+    highAverage = highIntensityExercises['Calories per kg'].mean()
+highAverage=highAverage*2.2
+print(highAverage)
+
+mediumIntensityExercises = gymExercises[gymExercises['Activity, Exercise or Sport (1 hour)'].str.contains('moderate|general')]
+print(mediumIntensityExercises)
+mediumAverage = 0
+for i in mediumIntensityExercises['Activity, Exercise or Sport (1 hour)']:
+    mediumAverage = mediumIntensityExercises['Calories per kg'].mean()
+mediumAverage = mediumAverage*2.2
+print(mediumAverage)
+
+lowIntensityExercises = gymExercises[gymExercises['Activity, Exercise or Sport (1 hour)'].str.contains('light|slow|minimal')]
+print(lowIntensityExercises)
+lowAverage = 0
+for i in lowIntensityExercises['Activity, Exercise or Sport (1 hour)']:
+    lowAverage = lowIntensityExercises['Calories per kg'].mean()
+
+lowAverage = lowAverage*2.2
+print(lowAverage)
