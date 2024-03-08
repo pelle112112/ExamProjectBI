@@ -56,7 +56,6 @@ plt.show()
 # Highest correlation to weight loss is Training_hours_per_week
 
 # Making scatterplot to get an idea if the data is suitable for linear regression
-plt.figure(figsize=(10, 10))
 plt.ylabel('Weight Loss')
 plt.xlabel('Training hours per week')
 plt.scatter(data['Training_hours_per_week'].values.reshape(-1, 1), data['Weight_Loss'].values.reshape(-1, 1))

@@ -2,7 +2,7 @@ import streamlit as st
 import Code.readData as read
 from PIL import Image
 
-st.set_page_config(page_title="Data Exploration")
+st.set_page_config(page_title="Data Exploration", layout="wide")
 
 st.title("Data Exploration")
 st.sidebar.header("Data Exploration", divider='rainbow')
