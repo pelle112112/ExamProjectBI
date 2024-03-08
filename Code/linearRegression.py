@@ -9,6 +9,7 @@ from sklearn.linear_model import LinearRegression
 import sklearn.metrics as sm
 import statsmodels.api as statsmodels
 from sklearn.preprocessing import PolynomialFeatures
+import joblib
 
 
 data = readData.loadData('../Data/weight_loss_dataset.csv', 'csv')
@@ -149,3 +150,6 @@ R_Squared = sm.r2_score(y_test, polyPredictions)
 
 print(RMSE) # 1.874
 print(R_Squared) # 0.480
+
+# Saving the best model of the 3 methods. (Multilinear)
+joblib.dump(multiLineModel, '../model/bestLinearModel.pkl')
