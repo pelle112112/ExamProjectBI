@@ -37,4 +37,7 @@ match chosenModel:
 
         if makePrediction:
             prediction = linearModel.predict(df)
-            st.success(f'With a starting weight of: {weight} kg, you will most likely have lost {prediction[0][0]} kg, after having trained {duration} weeks, {hoursPerWeek} hours per week, at {intensity} intensity.')
+            if prediction[0][0] > 0: 
+                st.success(f'With a starting weight of: {weight} kg, you will most likely have lost {prediction[0][0]} kg, after having trained {duration} weeks, {hoursPerWeek} hours per week, at {intensity} intensity.')
+            else:
+                st.success("You won't lose any weight with what you have currently selected, try updating your training hours per week or the amount of weeks you're training.")
