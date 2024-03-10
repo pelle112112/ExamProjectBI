@@ -6,6 +6,8 @@ from sklearn import model_selection
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.naive_bayes import GaussianNB
+import joblib
+
 
 
 # Your existing code for loading and preprocessing data
@@ -23,7 +25,8 @@ data['Gender'].replace({'Male': 0, 'Female': 1}, inplace=True)
 data['Intensity'].replace({'Low': 0, 'Medium': 1, 'High': 2}, inplace=True)
 
 # Regression columns
-regression_columns = ['Duration_in_weeks', 'Training_hours_per_week', 'Intensity', 'Weight_Loss']
+classColumns = ['Starting_Weight_KG', 'Duration_in_weeks', 'Training_hours_per_week', 'Intensity']
+columns = ['Starting_Weight_KG','Duration_in_weeks', 'Training_hours_per_week', 'Intensity', 'Weight_Loss']
 
 # Classification label creation (0 for no weight loss, 1 for weight loss)
 #data['Class_Label'] = pd.cut(data['Weight_Loss'], bins=[-np.inf, 0, np.inf], labels=[0, 1], right=False)
@@ -32,11 +35,11 @@ data['Class_Label'] = data['Weight_Loss']
 
 
 # Feature and target for classification
-X_class = data[regression_columns[:-1]].values
+X_class = data[classColumns].values
 y_class = data['Class_Label'].astype(int).values
 
 # Feature and target for regression
-X_reg = data[regression_columns[:-1]].values
+X_reg = data[columns[:-1]].values
 y_reg = data['Weight_Loss'].values
 
 def randomForestClassifier():
@@ -71,6 +74,7 @@ def randomForestClassifier():
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
     plt.show()
+    joblib.dump(clf, '../model/randomForestClassifier.pkl')
 
 
 def randomForestRegressor():    
@@ -91,7 +95,7 @@ def randomForestRegressor():
     plt.show()
 
 # Call the functions
-randomForestClassifier()
+clf = randomForestClassifier()
 randomForestRegressor()
 
 
