@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 from sklearn import model_selection
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
+from sklearn.naive_bayes import GaussianNB
+
 
 # Your existing code for loading and preprocessing data
 data = readData.loadData('../Data/weight_loss_dataset.csv', 'csv')
@@ -92,3 +94,36 @@ def randomForestRegressor():
 randomForestClassifier()
 randomForestRegressor()
 
+
+# Naive Bayes Classifier
+def naiveBayesClassifier():
+    set_prop = 0.2
+    seed = 5
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X_class, y_class, test_size=set_prop, random_state=seed)
+    clf = GaussianNB()
+
+    # Perform cross-validation
+    scores = model_selection.cross_val_score(clf, X_class, y_class, cv=5)
+    print("Cross-validated Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+
+    clf.fit(X_train, y_train)
+    testp = clf.predict(X_test)
+    print("Accuracy for classification using Naive Bayes Classifier: ", accuracy_score(y_test, testp))
+
+    # Display confusion matrix
+    confusion_mat = confusion_matrix(y_test, testp)
+    print("Confusion Matrix:")
+    print(confusion_mat)
+
+    plt.imshow(confusion_mat, interpolation='nearest')
+    plt.title('Confusion matrix')
+    plt.colorbar()
+    ticks = np.arange(14)
+    plt.xticks(ticks, ticks)
+    plt.yticks(ticks, ticks)
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+    plt.show()
+
+
+naiveBayesClassifier()
