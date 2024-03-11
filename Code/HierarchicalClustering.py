@@ -1,5 +1,4 @@
 import dataCleaning as dc
-import kMean as km
 import numpy as np
 import pandas as pd
 
@@ -13,8 +12,11 @@ from sklearn import metrics
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-hcData = km.processesedTrainingData.copy()
-print(hcData)
+trainingData = dc.gymExercises.copy()
+print(trainingData)
+
+# Remove the Martial Arts data
+hcData = trainingData[~trainingData['Activity, Exercise or Sport (1 hour)'].str.contains('Martial arts')]
 
 X = hcData.iloc[:, 2:].values
 print (X)
