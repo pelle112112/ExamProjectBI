@@ -5,6 +5,7 @@ import pandas as pd
 
 import scipy.cluster.hierarchy as sch
 from scipy.spatial.distance import pdist
+from scipy.cluster.hierarchy import fcluster
 
 from sklearn.cluster import AgglomerativeClustering
 from sklearn import metrics
@@ -18,20 +19,31 @@ print(hcData)
 X = hcData.iloc[:, 2:].values
 print (X)
 
+linkageMatrix = sch.linkage(X, method='ward')
 
 # making a  Dendogram
 plt.figure(figsize=(20, 10))
 
-dendogram = sch.dendrogram(sch.linkage(X, method='ward'))
+dendogram = sch.dendrogram(linkageMatrix)
 plt.title('Dendogram')
 plt.xlabel('Exercise Id')
 plt.ylabel('Euclidean distances')
 plt.show()
 
-n_clusters = 4
+# Automatic choose the number of clusters
+#First we choose the max distance between cluster
+heightCutoff = 100
+
+# Then we use the fcluster function to get the cluster labels
+clusterLabels = fcluster(linkageMatrix, heightCutoff, criterion='distance')
+
+n_clusters = len(set(clusterLabels))
+print(f'Number of clusters: {n_clusters}')
 
 model = AgglomerativeClustering(n_clusters, linkage='ward')
 model.fit(X)
+
+labels = model.labels_
 
 Y = model.fit_predict(X)
 print (Y)
