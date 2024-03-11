@@ -7,6 +7,9 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.naive_bayes import GaussianNB
 import joblib
+import seaborn as sns
+from sklearn.metrics import classification_report
+
 
 
 
@@ -42,6 +45,23 @@ y_class = data['Class_Label'].astype(int).values
 X_reg = data[columns[:-1]].values
 y_reg = data['Weight_Loss'].values
 
+# Separate input data into classes based on labels
+class0 = np.array(X_class[y_class==0])
+class1 = np.array(X_class[y_class==1])
+class2 = np.array(X_class[y_class==2])
+class3 = np.array(X_class[y_class==3])
+class4 = np.array(X_class[y_class==4])
+class5 = np.array(X_class[y_class==5])
+class6 = np.array(X_class[y_class==6])
+class7 = np.array(X_class[y_class==7])
+class8 = np.array(X_class[y_class==8])
+class9 = np.array(X_class[y_class==9])
+class10 = np.array(X_class[y_class==10])
+class11 = np.array(X_class[y_class==11])
+class12 = np.array(X_class[y_class==12])
+class13 = np.array(X_class[y_class==13])
+class14 = np.array(X_class[y_class==14])
+
 def randomForestClassifier():
     set_prop = 0.2
     seed = 5
@@ -74,6 +94,23 @@ def randomForestClassifier():
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
     plt.show()
+    
+    class_names = ['Class0', 'Class1', 'Class2','Class3', 'Class4', 'Class5', 'Class6', 'Class7', 'Class8', 'Class9', 'Class10', 'Class11', 'Class12', 'Class13', 'Class14']
+    print(classification_report(y_train, clf.predict(X_train), zero_division=1, target_names=class_names))
+    print(classification_report(y_test, clf.predict(X_test), zero_division=1, target_names=class_names))
+    plt.show()
+    
+    # Lets visualize the classification reports
+    plt.figure(figsize=(10, 10))
+    plt.title("Classification report for training data")
+    sns.heatmap(pd.DataFrame(classification_report(y_train, clf.predict(X_train), zero_division=1, target_names=class_names, output_dict=True)).iloc[:-1, :].T, annot=True)
+    plt.show()
+    plt.figure(figsize=(10, 10))
+    plt.title("Classification report for test data")
+    sns.heatmap(pd.DataFrame(classification_report(y_test, clf.predict(X_test), zero_division=1, target_names=class_names, output_dict=True)).iloc[:-1, :].T, annot=True)
+    plt.show()
+    
+    
     joblib.dump(clf, '../model/randomForestClassifier.pkl')
 
 
