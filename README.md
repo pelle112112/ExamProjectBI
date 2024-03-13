@@ -136,8 +136,6 @@ Below are the data points for the actual and expected data:
 
 The only way to use K-Means is if we know how many clusters we need to make the best silhouette score
 
-The only way to use K-Means is if we know how many clusters we need to make the best silhouette score
-
 In the Silhouette Analysis below we can see that the clusters peak at 4
 
 ![Alt text](./Documentation/Graphs/K-Mean/Silhouette%20Analysis.png)
