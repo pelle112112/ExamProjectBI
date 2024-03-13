@@ -19,17 +19,17 @@ what methods can individuals utilize to develop an effective training program?
 Weight loss is difficult for many people around the world, and as the world population becomes heavier and heavier, 
 we want to address the problem with a program that can predict the amount of weight individuals can have with certain training hours, 
 intensity, starting weight etc, making it easier for people to set realistic goals and determine what kind of training is best.
+
 ### Theoretical Foundation:
 We are using Python as the programming language and anaconda as interpreter.
 We have used several models for training and predicting data.
-1. linear, multilinear, polynomiel regression (supervised machine learning)
+1. linear, multilinear, polynomiel regression, random forest classifier, Naive Bayes (supervised machine learning)
 2. k-Means, HierarchicalClustering (un-supervised training)
 
-To predict we used liniear regression and DecisionTree.
-
 ### Argumentation of Choices:
-For the supervised training we started by testing which of the models gave the best R-Squared score.
+For the supervised training we started by testing which of the models gave the best accuracy. For Regression it was the R-Squared score.
 And used the one with the highest score. The score is a percentage, the Higher the percentage the better.
+We concluded that classification was not the best way for predicting weight loss, as it defines classes and not numerical values.
 
 For the un-supervised training we based the choise from the silhouette score.
 the score varies from (-1 to 1) the closer we get to 1 the better is the score.
