@@ -35,15 +35,16 @@ def calculateTrainingProgram():
     intensity = data['Intensity'][0]
     starting_weight = data['Starting_Weight_KG'][0]
     starting_weight = starting_weight * 2.20462  # Convert to pounds
+    caloriesLeft = calories_goal
         
     # Determine the array of exercises based on intensity
     if intensity == 0:  # High Intensity
-        exercises = high
+        exercises = pd.concat([high, high, high])
         
     elif intensity == 1:  # Medium Intensity
-        exercises = med
+        exercises = pd.concat([med, med, med])
     else:  # Low Intensity
-        exercises = low
+        exercises = pd.concat([low, low, low])
     
     weightBasedExercises = exercises
     # Find the closest weight value in the exercise dataset between 130, 155, 180, 205
@@ -81,11 +82,12 @@ def calculateTrainingProgram():
         weightBasedExercises.drop('Calories per kg', axis=1, inplace=True)
 
     
-    caloriesLeft = calories_goal
+    
 
 
     trainingProgram = []
     # Calculate a one week training program
+    
     match starting_weight:
         case 130:
             for exercise in weightBasedExercises['130 lb']:
@@ -95,6 +97,8 @@ def calculateTrainingProgram():
                     print("Calories left: ", caloriesLeft)
                     print("Exercise: ", exercise)
             trainingProgram = weightBasedExercises[weightBasedExercises['130 lb'].isin(trainingProgram)]
+            trainingProgram.insert(2, "Minutes per week", 60)
+            
         case 155:
             for exercise in weightBasedExercises['155 lb']:
                 if caloriesLeft > exercise/2:
@@ -103,6 +107,7 @@ def calculateTrainingProgram():
                     print("Calories left: ", caloriesLeft)
                     print("Exercise: ", exercise)
             trainingProgram = weightBasedExercises[weightBasedExercises['155 lb'].isin(trainingProgram)]
+            trainingProgram.insert(2, "Minutes per week", 60)
         case 180:
             for exercise in weightBasedExercises['180 lb']:
                 if caloriesLeft > exercise/2:
@@ -111,6 +116,7 @@ def calculateTrainingProgram():
                     print("Calories left: ", caloriesLeft)
                     print("Exercise: ", exercise)
             trainingProgram = weightBasedExercises[weightBasedExercises['180 lb'].isin(trainingProgram)]
+            trainingProgram.insert(2, "Minutes per week", 60)
         case 205:
             for exercise in weightBasedExercises['205 lb']:
                 if(caloriesLeft > exercise/2):
@@ -119,8 +125,9 @@ def calculateTrainingProgram():
                         print("Calories left: ", caloriesLeft) 
                         print("Exercise: ", exercise)
             trainingProgram = weightBasedExercises[weightBasedExercises['205 lb'].isin(trainingProgram)]
+            trainingProgram.insert(2, "Minutes per week", 60)
 
-    
+
     return trainingProgram, caloriesLeft
 
 # Call the function when the button is clicked
