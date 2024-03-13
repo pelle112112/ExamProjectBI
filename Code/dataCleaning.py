@@ -1,4 +1,4 @@
-import readData
+import Code.readData as rd
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -14,8 +14,8 @@ from sklearn.metrics import mean_squared_error
 
 
 # Deciding on which datasets to use
-exercise_datasetDF = readData.loadData('../Data/exercise_dataset.csv', 'csv')
-megaGym_datasetDF = readData.loadData('../Data/megaGymDataset.csv', 'csv')
+exercise_datasetDF = pd.read_csv('../Data/exerciseDataset.csv')
+megaGym_datasetDF = rd.loadData('../Data/megaGymDataset.csv', 'csv')
 #print(exercise_datasetDF)
 #print(megaGym_datasetDF)
 
@@ -172,3 +172,5 @@ for i in lowIntensityExercises['Activity, Exercise or Sport (1 hour)']:
 
 lowAverage = lowAverage*2.2
 print(lowAverage)
+
+
