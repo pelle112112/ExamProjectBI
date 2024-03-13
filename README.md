@@ -136,9 +136,9 @@ Below are the data points for the actual and expected data:
 
 The only way to use K-Means is if we know how many clusters we need to make the best silhouette score
 
-In the Silhouette Analysis below we can see that the clusters peak at 5 and 9. with a little better score at 9.
-but since the difference between the two is minimal, we chose to go with 5
-so that we don't run into the risk of overfitting the model, and therfore we create a simpler model, and in general the fewer clusters chosen the more stable the model is.
+The only way to use K-Means is if we know how many clusters we need to make the best silhouette score
+
+In the Silhouette Analysis below we can see that the clusters peak at 4
 
 ![Alt text](./Documentation/Graphs/K-Mean/Silhouette%20Analysis.png)
 
@@ -150,7 +150,7 @@ Lastly we create a Silhouette plot, so that we get a visual representation of th
 
 ![Alt text](./Documentation/Graphs/K-Mean/Silhouette%20plot.png)
 
-- The final result is a silhouette score of 0.57
+- The final result is a silhouette score of 0.767
 
 ### Hierarchical Clustering
 
