@@ -6,6 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
+from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import silhouette_score
 from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier
@@ -21,6 +22,7 @@ processesedTrainingData = trainingData[~trainingData['Activity, Exercise or Spor
 print(processesedTrainingData)
 
 # Ad a new intensity categoory
+'''
 intensityCategory = {
     'very light': lambda x: x < 0.5,
     'light': lambda x: (0.5 <= x) & (x < 1),
@@ -48,14 +50,35 @@ intensityMapping = {
 processesedTrainingData['Intensity'] = processesedTrainingData['Intensity'].map(intensityMapping)
 
 print(processesedTrainingData)
+'''
+intensities = []
+for activity in processesedTrainingData['Activity, Exercise or Sport (1 hour)']:
+    if re.search(r'light|slow|minimal', activity):
+        intensities.append(2)
+    elif re.search(r'moderate|general', activity):
+        intensities.append(1)
+    elif re.search(r'vigorous|fast', activity):
+        intensities.append(0)
+    else:
+        intensities.append(None) 
+
+processesedTrainingData['Intensity'] = intensities
+print(processesedTrainingData)
+
+processesedTrainingData = processesedTrainingData[processesedTrainingData['Intensity'].notna()]
+
+le = LabelEncoder()
+processesedTrainingData['Intensity'] = le.fit_transform(processesedTrainingData['Intensity'])
+print(processesedTrainingData)
 
 # Selected the numeric columns for clustering
-numeric_columns = ['130 lb', '155 lb', '180 lb', '205 lb', 'Calories per kg', 'Intensity']
+# numeric_columns = ['130 lb', '155 lb', '180 lb', '205 lb', 'Calories per kg']
+numeric_columns = ['Calories per kg', 'Intensity']
 numeric_data = processesedTrainingData[numeric_columns]
 
 # Standardize the data
-scaler = StandardScaler()
-scaled_data = scaler.fit_transform(numeric_data)
+#scaler = StandardScaler()
+#scaled_data = scaler.fit_transform(numeric_data)
 
 
 silScore = []
@@ -74,10 +97,13 @@ plt.ylabel('Silhouette Score')
 plt.show()
 
 # The optimal number of clusters
-optimalK = 5
+optimalK = 3
 
 kmeans = KMeans(n_clusters=optimalK, init='k-means++', max_iter=300, n_init=10, random_state=0)
-kmeans.fit(numeric_data)
+kmeans.fit(numeric_data[['Calories per kg', 'Intensity']])
+
+test = kmeans.predict([[5.601, 1]])
+print(test)
 
 clusterLabels = kmeans.labels_
 
@@ -86,13 +112,14 @@ silhouette_avg = silhouette_score(numeric_data, clusterLabels)
 print('Silhouette score = ', silhouette_avg)
 
 
-X = numeric_data[['Calories per kg', 'Intensity']]
+X = numeric_data[['Intensity']]
 
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 kmeans = KMeans(n_clusters=optimalK, random_state=0)
-y = kmeans.fit_predict(X_scaled)
+kmeans.fit(X)
+y = kmeans.predict(X)
 
 # Plotting the clusters
 for i in range(optimalK):
@@ -100,11 +127,11 @@ for i in range(optimalK):
 
     print("Cluster ", i, ":", cluster.shape)
 
-    plt.scatter(cluster['Calories per kg'], cluster['Intensity'], label=f'Cluster {i}')
+    plt.scatter(cluster['Intensity'], cluster['Calories per kg'], label=f'Cluster {i}')
 
 plt.legend()
-plt.xlabel('Calories per kg')
-plt.ylabel('Intensity')
+plt.xlabel('Intensity')
+plt.ylabel('Calories per kg')
 plt.grid(True)
 plt.show()
 
