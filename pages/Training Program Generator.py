@@ -88,19 +88,42 @@ def calculateTrainingProgram():
 
     trainingProgram = []
     # Calculate a one week training program. We should decide how many days a week the user wants to train, by accessing the amount of calories they want to burn per week divided by the intensity of the training
-    for exercise in weightBasedExercises['205 lb']:
-        if(caloriesLeft > exercise/2):
-                trainingProgram.append(exercise)
-                caloriesLeft= caloriesLeft- exercise
-                print("Calories left: ", caloriesLeft) 
-                print("Exercise: ", exercise)
+    match starting_weight:
+        case 130:
+            for exercise in weightBasedExercises['130 lb']:
+                if caloriesLeft > exercise/2:
+                    trainingProgram.append(exercise)
+                    caloriesLeft = caloriesLeft - exercise
+                    print("Calories left: ", caloriesLeft)
+                    print("Exercise: ", exercise)
+            trainingProgram = weightBasedExercises[weightBasedExercises['130 lb'].isin(trainingProgram)]
+        case 155:
+            for exercise in weightBasedExercises['155 lb']:
+                if caloriesLeft > exercise/2:
+                    trainingProgram.append(exercise)
+                    caloriesLeft = caloriesLeft - exercise
+                    print("Calories left: ", caloriesLeft)
+                    print("Exercise: ", exercise)
+            trainingProgram = weightBasedExercises[weightBasedExercises['155 lb'].isin(trainingProgram)]
+        case 180:
+            for exercise in weightBasedExercises['180 lb']:
+                if caloriesLeft > exercise/2:
+                    trainingProgram.append(exercise)
+                    caloriesLeft = caloriesLeft - exercise
+                    print("Calories left: ", caloriesLeft)
+                    print("Exercise: ", exercise)
+            trainingProgram = weightBasedExercises[weightBasedExercises['180 lb'].isin(trainingProgram)]
+        case 205:
+            for exercise in weightBasedExercises['205 lb']:
+                if(caloriesLeft > exercise/2):
+                        trainingProgram.append(exercise)
+                        caloriesLeft= caloriesLeft- exercise
+                        print("Calories left: ", caloriesLeft) 
+                        print("Exercise: ", exercise)
+            trainingProgram = weightBasedExercises[weightBasedExercises['205 lb'].isin(trainingProgram)]
 
     # Finde the names of the exercises and return them
-    trainingProgram = weightBasedExercises[weightBasedExercises['205 lb'].isin(trainingProgram)]
     
-
-    
-
     return trainingProgram, caloriesLeft
 
 # Call the function when the button is clicked
