@@ -25,12 +25,17 @@ match chosenExplorationData:
     case 'Exercise data':
         data = read.loadData('Data/exercise_dataset.csv', 'csv')
         st.dataframe(data)
-        tab1, tab2, tab3, tab4 = st.tabs(['Nothing', 'to', 'show', 'yet'])
+        tab1, tab2, tab3, tab4 = st.tabs(['Gym Exercises', 'Starting Weight Boxplots', 'Histogram', 'Correlation heatmap'])
         with tab1:
-            st.write('put stuff here')
+            st.image(Image.open('Documentation/Graphs/exploration/Exercises_Users_Can_Do_At_Gym_Updated.png'))
+            st.write('The exercises that users can do at the gym, and how many calories they burn if done for 1 hour')
+            
         with tab2:
-            st.write('put stuff here')
+            st.image(Image.open('Documentation/Graphs/exploration/BoxPlot_Exercise_Data.png'))
+            st.write('Correlation between starting weight and weight loss')
+            st.image(Image.open('Documentation/Graphs/exploration/BoxPlot_Exercise_Data_Standardized.png'))
+            st.write('Standaridized boxplot of the same data')
         with tab3:
-            st.write('put stuff here')
+            st.image(Image.open('Documentation/Graphs/exploration/All_Exercises_Calories.png'))
         with tab4:
-            st.write('put stuff here')
+            st.image(Image.open('Documentation/Graphs/exploration/Correlation_All_Exercises.png'))
