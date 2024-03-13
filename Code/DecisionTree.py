@@ -25,14 +25,12 @@ data = data.assign(Weight_Loss=weightLoss)
 
 # Convert gender and intensity to numerical values
 data['Gender'].replace({'Male': 0, 'Female': 1}, inplace=True)
-data['Intensity'].replace({'Low': 0, 'Medium': 1, 'High': 2}, inplace=True)
+data['Intensity'].replace({'Low': 2, 'Medium': 1, 'High': 0}, inplace=True)
 
 # Regression columns
 classColumns = ['Starting_Weight_KG', 'Duration_in_weeks', 'Training_hours_per_week', 'Intensity']
 columns = ['Starting_Weight_KG','Duration_in_weeks', 'Training_hours_per_week', 'Intensity', 'Weight_Loss']
 
-# Classification label creation (0 for no weight loss, 1 for weight loss)
-#data['Class_Label'] = pd.cut(data['Weight_Loss'], bins=[-np.inf, 0, np.inf], labels=[0, 1], right=False)
 # Changing class label to predict the amount of weight loss
 data['Class_Label'] = data['Weight_Loss']
 
@@ -63,10 +61,10 @@ class13 = np.array(X_class[y_class==13])
 class14 = np.array(X_class[y_class==14])
 
 def randomForestClassifier():
-    set_prop = 0.2
+    set_prop = 0.18
     seed = 5
     X_train, X_test, y_train, y_test = model_selection.train_test_split(X_class, y_class, test_size=set_prop, random_state=seed)
-    parameters = {'max_depth': 5, 'n_estimators': 100}
+    parameters = {'max_depth': 7, 'n_estimators': 500}
     clf = RandomForestClassifier(**parameters)
 
     # Perform cross-validation
@@ -109,6 +107,21 @@ def randomForestClassifier():
     plt.title("Classification report for test data")
     sns.heatmap(pd.DataFrame(classification_report(y_test, clf.predict(X_test), zero_division=1, target_names=class_names, output_dict=True)).iloc[:-1, :].T, annot=True)
     plt.show()
+    
+    plt.figure(figsize=(10, 6))
+    plt.title("Feature importances")
+    sns.barplot(x=clf.feature_importances_, y=classColumns)
+    plt.show()
+    
+    plt.figure(figsize=(10, 10))
+    plt.title("Random Forest Classifier")
+    plt.scatter(X_test[:, 1], y_test, color='black', label='Actual')
+    plt.scatter(X_test[:, 1], testp, color='blue', label='Predicted')
+    plt.xlabel('Duration in weeks')
+    plt.ylabel('Weight Loss')
+    plt.legend()
+    plt.show()
+    
     
     
     joblib.dump(clf, '../model/randomForestClassifier.pkl')
