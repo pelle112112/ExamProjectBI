@@ -23,6 +23,10 @@ print(processesedTrainingData)
 
 # Ad a new intensity categoory
 '''
+    'Low': lambda x: x < 1,
+    'Medium': lambda x: (1 <= x) & (x < 2),
+    'High': lambda x: 2 <= x,
+'''
 intensityCategory = {
     'very light': lambda x: x < 0.5,
     'light': lambda x: (0.5 <= x) & (x < 1),
@@ -38,7 +42,11 @@ for category, condition in intensityCategory.items():
 
 print(processesedTrainingData[['Activity, Exercise or Sport (1 hour)', 'Calories per kg', 'Intensity']])
 print (processesedTrainingData)
-
+'''
+    'Low': 2,
+    'Medium': 1,
+    'High': 0,
+    '''
 intensityMapping = {
     'very light': 1,
     'light': 2,
@@ -70,7 +78,7 @@ processesedTrainingData = processesedTrainingData[processesedTrainingData['Inten
 le = LabelEncoder()
 processesedTrainingData['Intensity'] = le.fit_transform(processesedTrainingData['Intensity'])
 print(processesedTrainingData)
-
+'''
 # Selected the numeric columns for clustering
 # numeric_columns = ['130 lb', '155 lb', '180 lb', '205 lb', 'Calories per kg']
 numeric_columns = ['Calories per kg', 'Intensity']
@@ -97,7 +105,7 @@ plt.ylabel('Silhouette Score')
 plt.show()
 
 # The optimal number of clusters
-optimalK = 3
+optimalK = 4
 
 kmeans = KMeans(n_clusters=optimalK, init='k-means++', max_iter=300, n_init=10, random_state=0)
 kmeans.fit(numeric_data[['Calories per kg', 'Intensity']])
@@ -120,14 +128,14 @@ X_scaled = scaler.fit_transform(X)
 kmeans = KMeans(n_clusters=optimalK, random_state=0)
 kmeans.fit(X)
 y = kmeans.predict(X)
-
+clusterNames = {0:'light', 1:'moderate', 2:'vigorous', 3:'very vigorous'}
 # Plotting the clusters
 for i in range(optimalK):
     cluster = numeric_data[y == i]
 
     print("Cluster ", i, ":", cluster.shape)
 
-    plt.scatter(cluster['Intensity'], cluster['Calories per kg'], label=f'Cluster {i}')
+    plt.scatter(cluster['Intensity'], cluster['Calories per kg'], label=clusterNames[i])
 
 plt.legend()
 plt.xlabel('Intensity')

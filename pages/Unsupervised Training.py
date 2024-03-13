@@ -18,15 +18,15 @@ tab1, tab2, tab3 = st.tabs(['K-Means', 'Hierarchical Clustering', 'difference'])
 with tab1:    
     st.image(Image.open('Documentation/Graphs/K-Mean/Silhouette Analysis.png'))
     st.success('''First we need to determend how many clusters we need.
-               The Silhouette Analysis shows that the score peaks at 9 clusters, but there isn't much difference between 5 and 9
-               So we will use 5 clusters for the K-Means algorithm''')
+               The Silhouette Analysis shows that the score peaks at 4 clusters,
+               so we will use 4 clusters for the K-Means algorithm.''')
     
     st.image(Image.open('Documentation/Graphs/K-Mean/ClusterMap.png'))
     st.success('Next we create a cluster map to visualize the clusters')
 
     st.image(Image.open('Documentation/Graphs/K-Mean/Silhouette plot.png'))
     st.success('The silhouette plot shows that the clusters are well defined')
-    st.success('Silhouette score =  0.5744787941043337')
+    st.success('Silhouette score =  0.768')
     
                 
 with tab2: 
