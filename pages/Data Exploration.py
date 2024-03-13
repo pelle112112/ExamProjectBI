@@ -37,5 +37,6 @@ match chosenExplorationData:
             st.write('Standaridized boxplot of the same data')
         with tab3:
             st.image(Image.open('Documentation/Graphs/exploration/All_Exercises_Calories.png'))
+            st.write('Histogram of all exercises and the amount of calories they burn')
         with tab4:
             st.image(Image.open('Documentation/Graphs/exploration/Correlation_All_Exercises.png'))
