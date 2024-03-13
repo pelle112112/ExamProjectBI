@@ -53,13 +53,13 @@ But olso kind of our backlog since we have (Brainstorm.md, Problem-Statement.md 
 
  ![Alt text](./Documentation/Graphs/exploration/BoxPlot_Exercise_Data.png)
 
- Boxplot: We keep the outliers, since they have a value in our datasets accuracy score, but we standardize the numeric value.
- and  uses the value to determend if the calories per kg is consistent.
+ Boxplot: We kept the outliers, since they have a value in our datasets accuracy score, but we standardize the numeric value.
+ and used the value to determine if the calories per kg is consistent.
 
  ![Alt text](./Documentation/Graphs/exploration/BoxPlot_Exercise_Data_Standardized.png) 
 
 
- Pin Diagram: Shows how many calories are burned per hour during a specific exercise, this is used to create a general overview on how to distribute the exercises into intensity levels.
+ Pin Diagram: Shows how many calories are burned per hour during a specific exercise, this is used to create an overview of how to distribute the exercises in intensity levels.
 
 ![Alt text](./Documentation/Graphs/exploration/Exercises_Users_Can_Do_At_Gym_Updated.png)
 
@@ -69,7 +69,7 @@ This shows us the number of observations on four different features (Starting we
 
 ![Alt text](./Documentation/Graphs/exploration/weightlossDataHistogram.png)
 
-This we plot into a Pin diagram, which show us the difference between weightloss, compared to how hard the training was
+This we plot into a Pin diagram, which show us the difference between weightloss, compared to the intensity of the training.
 
 ![Alt text](./Documentation/Graphs/exploration/weightLossDataWeightLostPerIntensity.png)
 
@@ -77,7 +77,7 @@ Now we plot the information from the weithloss dataset into a Heatmap, so that c
 
 ![Alt text](./Documentation/Graphs/exploration/weightLossDataHeatmap.png)
 
-The information we get, we use to sort the dataset, use data which are relevent for our models, and discard unnecessary data.
+The information we get is used to determine which features influence our dependent value (Weight_Loss in our case) the most. We now have an idea of which features in the dataset is more important to our training and which can be (somewhat) disregarded.
 
 
 
@@ -99,6 +99,7 @@ With the Polynomail Regression, our best R-squared score is 0.48, which is not i
 Lastly we used the Multilinear Regression method, which yielded a score of 0.758 which is far more ideal. This means that 75.8% of the variance is explained by the features in our dataset. 
 
 ![Alt text](./Documentation/Graphs/regression/MultilinearAICScores.png)
+
 We used an AIC score to determine the which features the multilinear model should be trained with. The score is used to compare different models by determining the best fit for the data. The best fit according to AIC is the model that explains the greatest amount of variance, while using as few features as possible. In our case we still get the best result using all 4 features, as the variance would increase too much if we dropped more features. 
 
 ### -- Classification ---
