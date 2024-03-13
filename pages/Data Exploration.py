@@ -34,7 +34,7 @@ match chosenExplorationData:
         with tab1:
             st.image(Image.open('Documentation/Graphs/exploration/Exercises_Users_Can_Do_At_Gym_Updated.png'))
             st.success('The exercises that users can do at the gym, and how many calories they burn if done for 1 hour')
-            st.success('These are the exercises and different intensities that we have based our models and data on')
+            st.success('These are the exercises and different intensities that we have based our other data values on.')
             
         with tab2:
             st.success('These boxplots show the correlation between starting weight and weight loss. And we can tell that the correlation looks to be linear.')
