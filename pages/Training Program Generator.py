@@ -35,6 +35,7 @@ def calculateTrainingProgram():
     intensity = data['Intensity'][0]
     starting_weight = data['Starting_Weight_KG'][0]
     starting_weight = starting_weight * 2.20462  # Convert to pounds
+    caloriesLeft = calories_goal
         
     # Determine the array of exercises based on intensity
     if intensity == 0:  # High Intensity
@@ -81,7 +82,7 @@ def calculateTrainingProgram():
         weightBasedExercises.drop('Calories per kg', axis=1, inplace=True)
 
     
-    caloriesLeft = calories_goal
+    
 
 
     trainingProgram = []
@@ -95,8 +96,9 @@ def calculateTrainingProgram():
                     caloriesLeft = caloriesLeft - exercise
                     print("Calories left: ", caloriesLeft)
                     print("Exercise: ", exercise)
-            trainingProgram = weightBasedExercises[weightBasedExercises['130 lb'].isin(trainingProgram)]
-            trainingProgram.insert(2, "Minutes per week", 60)
+                    #trainingProgram = weightBasedExercises[weightBasedExercises['130 lb'].isin(trainingProgram)]
+                    trainingProgram.insert(2, "Minutes per week", 60)
+            
         case 155:
             for exercise in weightBasedExercises['155 lb']:
                 if caloriesLeft > exercise/2:
@@ -125,7 +127,7 @@ def calculateTrainingProgram():
             trainingProgram = weightBasedExercises[weightBasedExercises['205 lb'].isin(trainingProgram)]
             trainingProgram.insert(2, "Minutes per week", 60)
 
-    
+
     return trainingProgram, caloriesLeft
 
 # Call the function when the button is clicked
