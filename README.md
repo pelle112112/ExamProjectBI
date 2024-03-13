@@ -17,7 +17,7 @@ what methods can individuals utilize to develop an effective training program?
 
 ### Motivation:
 Weight loss is difficult for many people around the world, and as the world population becomes heavier and heavier, 
-we want to address the problem with a program that can predict the amount of weight individuals can have with certain training hours, 
+we want to address the problem with a program that can predict the weight loss that individuals can have with certain training hours, 
 intensity, starting weight etc, making it easier for people to set realistic goals and determine what kind of training is best.
 
 ### Theoretical Foundation:
@@ -25,17 +25,18 @@ We are using Python as the programming language and anaconda as interpreter.
 We have used several models for training and predicting data.
 1. linear, multilinear, polynomiel regression, random forest classifier, Naive Bayes (supervised machine learning)
 2. k-Means, HierarchicalClustering (un-supervised training)
+3. Text vectorisation techniques: TF-IDF and Word Embedding
 
 ### Argumentation of Choices:
 For the supervised training we started by testing which of the models gave the best accuracy. For Regression it was the R-Squared score.
 And used the one with the highest score. The score is a percentage, the Higher the percentage the better.
 We concluded that classification was not the best way for predicting weight loss, as it defines classes and not numerical values.
 
-For the un-supervised training we based the choise from the silhouette score.
+For the un-supervised training we based the choice on the silhouette score.
 the score varies from (-1 to 1) the closer we get to 1 the better is the score.
 ### Design:
 We decided to split the different aspects of the project into different folders. 
-#### eksamples: Code, Data, Documentation/Graphs, Media, Model, pages.
+#### examples: Code, Data, Documentation/Graphs, Media, Model, pages.
 #### Code:
 All the python scripts are in this folder.
 #### Data:
@@ -83,22 +84,22 @@ The information we get, we use to sort the dataset, use data which are relevent 
 ### Supervised Training:
 ### --- Linear Regression ---
 
-We begin with creating a scatterplot, so we get a visual overview, and can use the best model, to get the most precise R-squared score.
-This graph looks suitable for linear regression.
+We began by creating a scatterplot to get a visual idea of whether the data seemed suitable for linear regression. 
+In our case the data seems suitable for linear regression. Although there seems to be a great deal of variance when using only 1 independent value. 
 
 ![Alt text](./Documentation/Graphs/regression/WeightLossDataScatterplotHoursPerWeekWeightLoss.png)
 
-When we run the linear model, the best prediction score we can pull out is 0.482
+When we run the linear model, the best R-squared score we can pull out is 0.482
 which isn't great, so we decide to use the other models aswell 
 ![Alt text](./Documentation/Graphs/regression/WeightLossDataLinearRegression.png)
 
-With the Polynomail Regression, our best prediction score is 0.48, which is not ideal.
-if the polynomial Regression model had been better, this model would be far better to use, since it need less features to make a prediction.
+With the Polynomail Regression, our best R-squared score is 0.48, which is not ideal.
 ![Alt text](./Documentation/Graphs/regression/Polyregression.png)
 
-lastly we use the Multilinear Regression, which gives a score of 0.758 which is far more ideal. this means that the model is now predicting with a 75.8% succes.
+Lastly we used the Multilinear Regression method, which yielded a score of 0.758 which is far more ideal. This means that 75.8% of the variance is explained by the features in our dataset. 
 
-The downside of using Multilinear regression, is that it can be hard to predict, which features that gives the best prediction score. Often its a trial-and-error approach.
+![Alt text](./Documentation/Graphs/regression/MultilinearAICScores.png)
+We used an AIC score to determine the which features the multilinear model should be trained with. The score is used to compare different models by determining the best fit for the data. The best fit according to AIC is the model that explains the greatest amount of variance, while using as few features as possible. In our case we still get the best result using all 4 features, as the variance would increase too much if we dropped more features. 
 
 ### -- Classification ---
 
@@ -112,12 +113,12 @@ we created the Feature importance graph, to see
 
 ### -- Unsupervised Training --
 
-### K-Meaans
+### K-Means
 
 The only way to use K-Means is if we know how many clusters we need to make the best silhouette score
 
 In the Silhouette Analysis below we can see that the clusters peak at 5 and 9. with a little better score at 9.
-but since the difference between the two is minimal, we choose to go with 5
+but since the difference between the two is minimal, we chose to go with 5
 so that we don't run into the risk of overfitting the model, and therfore we create a simpler model, and in general the fewer clusters chosen the more stable the model is.
 
 ![Alt text](./Documentation/Graphs/K-Mean/Silhouette%20Analysis.png)
