@@ -45,24 +45,7 @@ print(data)
 # Feature and target for regression
 X_reg = data[columns[:-1]].values
 y_reg = data['Weight_Loss'].values
-'''
-# Separate input data into classes based on labels
-class0 = np.array(X_class[y_class==0])
-class1 = np.array(X_class[y_class==1])
-class2 = np.array(X_class[y_class==2])
-class3 = np.array(X_class[y_class==3])
-class4 = np.array(X_class[y_class==4])
-class5 = np.array(X_class[y_class==5])
-class6 = np.array(X_class[y_class==6])
-class7 = np.array(X_class[y_class==7])
-class8 = np.array(X_class[y_class==8])
-class9 = np.array(X_class[y_class==9])
-class10 = np.array(X_class[y_class==10])
-class11 = np.array(X_class[y_class==11])
-class12 = np.array(X_class[y_class==12])
-class13 = np.array(X_class[y_class==13])
-class14 = np.array(X_class[y_class==14])
-'''
+
 def randomForestClassifier():
     set_prop = 0.18
     seed = 5
@@ -176,7 +159,7 @@ def naiveBayesClassifier():
     plt.imshow(confusion_mat, interpolation='nearest')
     plt.title('Confusion matrix')
     plt.colorbar()
-    ticks = np.arange(14)
+    ticks = np.arange(7)
     plt.xticks(ticks, ticks)
     plt.yticks(ticks, ticks)
     plt.ylabel('True label')
