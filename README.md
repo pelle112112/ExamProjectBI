@@ -177,3 +177,4 @@ Weight loss and personalized fitness program creation was a bigger task than exp
 We are able to predict individuals weight loss based on factors correlated to weight loss using Regression and Classification.
 The models with the best accuracy were Random Forest Classifier (79 %) and Multi-Linear Regression with r2 of(0.758). 
 We produced an alpha version of a perzonalized training program generator, but since it did not include any BI methods, we used our ressources to solve the predictions of weight loss.
+In the solution we used two different NPL techniques to provide an exploration option for the user.
