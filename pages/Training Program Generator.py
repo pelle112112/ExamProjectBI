@@ -96,8 +96,8 @@ def calculateTrainingProgram():
                     caloriesLeft = caloriesLeft - exercise
                     print("Calories left: ", caloriesLeft)
                     print("Exercise: ", exercise)
-                    #trainingProgram = weightBasedExercises[weightBasedExercises['130 lb'].isin(trainingProgram)]
-                    trainingProgram.insert(2, "Minutes per week", 60)
+            trainingProgram = weightBasedExercises[weightBasedExercises['130 lb'].isin(trainingProgram)]
+            trainingProgram.insert(2, "Minutes per week", 60)
             
         case 155:
             for exercise in weightBasedExercises['155 lb']:
