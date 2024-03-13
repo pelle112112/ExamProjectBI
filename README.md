@@ -171,8 +171,9 @@ K-Means: You need to know the number of cluster before making the model, but exc
 
 Hierarchical: You don't need to know the number of clusters in advance, but you risk of overfitting the model anyway if the restrictions for number of clusters isn't stated correctly, also its more workload heavy, and is therfore not suited on bigger datasets.
 
-### Outcomes:
+### Conclusion
 
-### For later optimization:
-
-we could use the Decision tree to help choose an excersise better suited for the users needs.
+Weight loss and personalized fitness program creation was a bigger task than expected, but our solution managed to solve the problem.
+We are able to predict individuals weight loss based on factors correlated to weight loss using Regression and Classification.
+The models with the best accuracy were Random Forest Classifier (79 %) and Multi-Linear Regression with r2 of(0.758). 
+We produced an alpha version of a perzonalized training program generator, but since it did not include any BI methods, we used our ressources to solve the predictions of weight loss.
