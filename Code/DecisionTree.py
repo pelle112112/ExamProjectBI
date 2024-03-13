@@ -31,18 +31,21 @@ data['Intensity'].replace({'Low': 2, 'Medium': 1, 'High': 0}, inplace=True)
 classColumns = ['Starting_Weight_KG', 'Duration_in_weeks', 'Training_hours_per_week', 'Intensity']
 columns = ['Starting_Weight_KG','Duration_in_weeks', 'Training_hours_per_week', 'Intensity', 'Weight_Loss']
 
-# Changing class label to predict the amount of weight loss
-data['Class_Label'] = data['Weight_Loss']
+bins = [-float('inf'), 0.5, 1.5, 3, 5, 7, 10, 14, float('inf')]
 
+# Changing class label to predict the amount of weight loss
+# data['Class_Label'] = data['Weight_Loss']
+data['Class_Label_bins'] = pd.cut(data['Weight_Loss'], bins=bins, labels=False)
 
 # Feature and target for classification
 X_class = data[classColumns].values
-y_class = data['Class_Label'].astype(int).values
+y_class = data['Class_Label_bins'].astype(int).values
 
+print(data)
 # Feature and target for regression
 X_reg = data[columns[:-1]].values
 y_reg = data['Weight_Loss'].values
-
+'''
 # Separate input data into classes based on labels
 class0 = np.array(X_class[y_class==0])
 class1 = np.array(X_class[y_class==1])
@@ -59,7 +62,7 @@ class11 = np.array(X_class[y_class==11])
 class12 = np.array(X_class[y_class==12])
 class13 = np.array(X_class[y_class==13])
 class14 = np.array(X_class[y_class==14])
-
+'''
 def randomForestClassifier():
     set_prop = 0.18
     seed = 5
@@ -86,14 +89,14 @@ def randomForestClassifier():
     plt.imshow(confusion_mat, interpolation='nearest')
     plt.title('Confusion matrix')
     plt.colorbar()
-    ticks = np.arange(14)
+    ticks = np.arange(7.5)
     plt.xticks(ticks, ticks)
     plt.yticks(ticks, ticks)
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
     plt.show()
     
-    class_names = ['Class0', 'Class1', 'Class2','Class3', 'Class4', 'Class5', 'Class6', 'Class7', 'Class8', 'Class9', 'Class10', 'Class11', 'Class12', 'Class13', 'Class14']
+    class_names = ['0 - 0.5kg', '0.5 - 1.5kg', '1.5 - 3kg','3 - 5kg', '5 - 7kg', '7 - 10kg', '10 - 14kg', 'More than 14kg']
     print(classification_report(y_train, clf.predict(X_train), zero_division=1, target_names=class_names))
     print(classification_report(y_test, clf.predict(X_test), zero_division=1, target_names=class_names))
     plt.show()
@@ -111,6 +114,7 @@ def randomForestClassifier():
     plt.figure(figsize=(10, 6))
     plt.title("Feature importances")
     sns.barplot(x=clf.feature_importances_, y=classColumns)
+    plt.tight_layout()
     plt.show()
     
     plt.figure(figsize=(10, 10))

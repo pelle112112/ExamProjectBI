@@ -50,8 +50,8 @@ match chosenModel:
         st.write('***NOTE - Excessive data input, such as a duration of 19+ weeks, hours pr week of 10+, will result in a very low prediction, as the model is not trained to predict such high values.***')
 
         weight = st.number_input('What is your current weight in kg?', 60, 200)
-        duration = st.number_input('How many weeks are you training?', 1, 52)
-        hoursPerWeek = st.number_input('How many hours are you training per week?', 1, 15)
+        duration = st.number_input('How many weeks are you training?', 1, 19)
+        hoursPerWeek = st.number_input('How many hours are you training per week?', 1, 10)
         intensity = st.selectbox("**How intense do you want your training to be?**", ['High', 'Medium', 'Low'])
         numericIntensity = None
         if intensity == 'High':
@@ -70,7 +70,25 @@ match chosenModel:
 
         if makePrediction:
             prediction = randomForestModel.predict(df)
+            predictionOutput = ""
             if prediction[0] > 0:
-                st.success(f'With a starting weight of: {weight} kg, you will most likely have lost {prediction[0]:.2f} kg, after having trained {duration} weeks, {hoursPerWeek} hours per week, at {intensity} intensity.')
+                match prediction:
+                    case 0:
+                        predictionOutput = '0 - 0.5kg'
+                    case 1:
+                        predictionOutput = '0.5 - 1.5kg'
+                    case 2:
+                        predictionOutput = '1.5 - 3.0kg'
+                    case 3:
+                        predictionOutput = '3.0 - 5.0kg'
+                    case 4: 
+                        predictionOutput = '5.0 - 7.0kg'
+                    case 5:
+                        predictionOutput = '7.0 - 10.0kg'
+                    case 6:
+                        predictionOutput = '10.0 - 14.0kg'
+                    case 7:
+                        predictionOutput = 'More than 14kg'
+                st.success(f'With a starting weight of: {weight} kg, you will most likely have lost between {predictionOutput}, after having trained {duration} weeks, {hoursPerWeek} hours per week, at {intensity} intensity.')
             else:
                 st.success("You won't lose any weight with what you have currently selected, try updating your training hours per week or the amount of weeks you're training.")
