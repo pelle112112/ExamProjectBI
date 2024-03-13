@@ -17,8 +17,11 @@ tab1, tab2 = st.tabs(['Random Forest Classifier', 'Naive Bayes'])
 
 with tab1:
     st.image(Image.open('Documentation/Graphs/classification/ClassificationReportTestData.png'))
+    st.image(Image.open('Documentation/Graphs/classification/ClassificationReportTrainingData.png'))
     st.image(Image.open('Documentation/Graphs/classification/ConfusionMatrixDecisionTree.png'))
-    st.success('Best result - Accuracy score = 0.50 +-0.05')
+    st.image(Image.open('Documentation/Graphs/classification/FeatureImportanceClassificationTree.png'))
+    st.image(Image.open('Documentation/Graphs/classification/RandomForestClassifierModel.png'))
+    st.success('Best result - Accuracy score = 0.59 +-0.05')
 
 
 with tab2:
