@@ -105,9 +105,9 @@ We used an AIC score to determine the which features the multilinear model shoul
 ### -- Classification ---
 
 - Decision Tree:
-The way we used this model was far from ideal.
-
-The main problem with this model is that it can't be used to predict something that hasn't already been happening. so if we want to see how much weight a used will loose, but having a medium intensity training for 15 weeks, with a  weekly trainingscheduale of 10 hours. we need to have sufficient data that support those choices, to make an accurate prediction. Therfore it can be seen in Streamlit with a comment, stating that the model will have a lower prediction the higher value the user uses.
+For classification we decided to use the 'Random Forest Classifier', and with an accuracy of around 50 %, it didnt seem like a good model for determining weight loss.
+However after applying bins (intervals) the accuracy for predicting weight loss is now at around 79 %.
+The model has very few false positives and false negatives.
 
 we created the Feature importance graph, to see 
 ![Alt text](./Documentation/Graphs/classification/RandomForestClassifierModel.png)
