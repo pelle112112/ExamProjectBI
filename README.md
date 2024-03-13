@@ -61,8 +61,6 @@ All the data we used are in here.
 Is the visual part of the project of the different models such as graphs, plots etc.
 But olso kind of our backlog since we have (Brainstorm.md, Problem-Statement.md and Problem-StatementUpdated.md).
 
-### Code:
-
 ### Artifacts:
 
 ### -- Data Exploration: --
