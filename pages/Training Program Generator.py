@@ -81,13 +81,11 @@ def calculateTrainingProgram():
         weightBasedExercises.drop('Calories per kg', axis=1, inplace=True)
 
     
-
-    # Convert the exercise dataset to a numpy array
     caloriesLeft = calories_goal
 
 
     trainingProgram = []
-    # Calculate a one week training program. We should decide how many days a week the user wants to train, by accessing the amount of calories they want to burn per week divided by the intensity of the training
+    # Calculate a one week training program
     match starting_weight:
         case 130:
             for exercise in weightBasedExercises['130 lb']:
@@ -122,7 +120,6 @@ def calculateTrainingProgram():
                         print("Exercise: ", exercise)
             trainingProgram = weightBasedExercises[weightBasedExercises['205 lb'].isin(trainingProgram)]
 
-    # Finde the names of the exercises and return them
     
     return trainingProgram, caloriesLeft
 
