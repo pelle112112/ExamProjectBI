@@ -45,6 +45,9 @@ match chosenModel:
                 
     case 'Random Forest':
         st.success('👇 You have chosen to predict with the random forest model, please fill out the information below 👇')
+        
+        st.write('***NOTE - The Random Forest Classifier is not optimal for deciding the amount of weight you will lose, but it can give you a general idea.***')
+        st.write('***NOTE - Excessive data input, such as a duration of 19+ weeks, hours pr week of 10+, will result in a very low prediction, as the model is not trained to predict such high values.***')
 
         weight = st.number_input('What is your current weight in kg?', 60, 200)
         duration = st.number_input('How many weeks are you training?', 1, 52)

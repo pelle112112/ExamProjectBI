@@ -1,0 +1,32 @@
+Index: .idea/csv-editor.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CsvFileAttributes\">\r\n    <option name=\"attributeMap\">\r\n      <map>\r\n        <entry key=\"\\Data\\megaGymDataset.csv\">\r\n          <value>\r\n            <Attribute>\r\n              <option name=\"separator\" value=\",\" />\r\n            </Attribute>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/csv-editor.xml b/.idea/csv-editor.xml
+--- a/.idea/csv-editor.xml	(revision 2e446e2b01d35fcca153b48751018e96d5671228)
++++ b/.idea/csv-editor.xml	(date 1710322559935)
+@@ -3,7 +3,21 @@
+   <component name="CsvFileAttributes">
+     <option name="attributeMap">
+       <map>
++        <entry key="\Data\exercise_dataset.csv">
++          <value>
++            <Attribute>
++              <option name="separator" value="," />
++            </Attribute>
++          </value>
++        </entry>
+         <entry key="\Data\megaGymDataset.csv">
++          <value>
++            <Attribute>
++              <option name="separator" value="," />
++            </Attribute>
++          </value>
++        </entry>
++        <entry key="\Data\weight_loss_dataset.csv">
+           <value>
+             <Attribute>
+               <option name="separator" value="," />
