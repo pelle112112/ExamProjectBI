@@ -130,6 +130,8 @@ Below are the data points for the actual and expected data:
 
 ![Alt text](./Documentation/Graphs/classification/RandomForestClassifierModel.png)
 
+- We created the Native Bayes model, but got a lower accuracy than the Random Forest Classifer, so we determined not to include it in the final product on Streamlit
+
 ### -- Unsupervised Training --
 
 ### K-Means
