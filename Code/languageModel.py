@@ -5,22 +5,28 @@ from langdetect import DetectorFactory, detect, detect_langs
 from spacy.lang.en import English
 import pandas as pd
 from sentence_transformers import SentenceTransformer, util
+data = pd.read_csv('Data\megaGymDataset.csv', index_col='index')
+
+allDocs = []
+for index in data.index:
+    allDocs.append(f"{data['Title'][index]} - {data['Desc'][index]} - {data['BodyPart'][index]} - {data['Equipment'][index]} - {data['Level'][index]} - {data['Rating'][index]}")
+
+embedder = SentenceTransformer('all-MiniLM-L6-v2')
+corpusEmbeddings = embedder.encode(allDocs)
 
 def getResponse(input):
-    data = pd.read_csv('Data\megaGymDataset.csv', index_col='index')
-
-    allDocs = []
-    for index in data.index:
-        allDocs.append(f"{data['Title'][index]} - {data['Desc'][index]} - {data['BodyPart'][index]} - {data['Equipment'][index]} - {data['Level'][index]} - {data['Rating'][index]}")
-
-    embedder = SentenceTransformer('all-MiniLM-L6-v2')
-    corpusEmbeddings = embedder.encode(allDocs)
+    
 
     #input = ['Is there an exercise which includes dumbbells for adominal movement?']
     embeddedInput = embedder.encode(input)
 
-    bestSimilarity = 0
-    response = None
+    similarities = util.cos_sim(embeddedInput, corpusEmbeddings)[0]
+    
+    index = similarities.argmax().item()
+    print(index)
+    bestSimilarity = similarities[index]
+    response = data.iloc[index]
+    '''
     for index, embedding in enumerate(corpusEmbeddings):
         similarity = util.cos_sim(embeddedInput, embedding)
         if similarity > bestSimilarity:
@@ -29,6 +35,7 @@ def getResponse(input):
 
     #print(bestSimilarity)
     #print(response)
+    '''
     return response, bestSimilarity
 '''
 # function to detect the language
