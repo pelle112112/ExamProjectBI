@@ -136,9 +136,7 @@ Below are the data points for the actual and expected data:
 
 The only way to use K-Means is if we know how many clusters we need to make the best silhouette score
 
-In the Silhouette Analysis below we can see that the clusters peak at 5 and 9. with a little better score at 9.
-but since the difference between the two is minimal, we chose to go with 5
-so that we don't run into the risk of overfitting the model, and therfore we create a simpler model, and in general the fewer clusters chosen the more stable the model is.
+In the Silhouette Analysis below we can see that the clusters peak at 4
 
 ![Alt text](./Documentation/Graphs/K-Mean/Silhouette%20Analysis.png)
 
@@ -150,7 +148,7 @@ Lastly we create a Silhouette plot, so that we get a visual representation of th
 
 ![Alt text](./Documentation/Graphs/K-Mean/Silhouette%20plot.png)
 
-- The final result is a silhouette score of 0.57
+- The final result is a silhouette score of 0.767
 
 ### Hierarchical Clustering
 
@@ -171,8 +169,10 @@ K-Means: You need to know the number of cluster before making the model, but exc
 
 Hierarchical: You don't need to know the number of clusters in advance, but you risk of overfitting the model anyway if the restrictions for number of clusters isn't stated correctly, also its more workload heavy, and is therfore not suited on bigger datasets.
 
-### Outcomes:
+### Conclusion
 
-### For later optimization:
-
-we could use the Decision tree to help choose an excersise better suited for the users needs.
+Weight loss and personalized fitness program creation was a bigger task than expected, but our solution managed to solve the problem.
+We are able to predict individuals weight loss based on factors correlated to weight loss using Regression and Classification.
+The models with the best accuracy were Random Forest Classifier (79 %) and Multi-Linear Regression with r2 of(0.758). 
+We produced an alpha version of a perzonalized training program generator, but since it did not include any BI methods, we used our ressources to solve the predictions of weight loss.
+In the solution we used two different NPL techniques to provide an exploration option for the user.
